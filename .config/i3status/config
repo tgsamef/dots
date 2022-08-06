@@ -1,0 +1,78 @@
+general {
+    output_format = "i3bar"
+    interval =5
+    colors = true
+    color_good = "#00f17d"
+    color_degraded = "#464680"
+    color_bad = "#f44336"
+    markup = "pango"
+}
+
+order += "tztime local"
+order += "cpu_usage"
+order += "memory"
+order += "load"
+order += "disk /"
+order += "disk /home/same-f/datamount/sys/"
+order += "disk /home/same-f/datamount/data/"
+order += "ethernet enp2s0"
+
+tztime local {
+    format = "<span fgcolor='#fcc000' bgcolor='#09090a' font='Font Awesome 6 Free Heavy 12px'> </span><span bgcolor='#09090a'>%H:%M</span>"
+    timezone = "Europe/Moscow"
+    locale = "ru_RU.UTF-8"
+}
+
+ethernet enp2s0 {
+    format_up = "  <span fgcolor='#fcc000' bgcolor='#09090a' font='Font Awesome 6 Free Heavy 12px'>   </span><span bgcolor='#09090a' font='Font Awesome 6 Free Heavy 12px'>   </span>"
+    format_down = "  <span fgcolor='#fcc000' bgcolor='#09090a' font='Font Awesome 6 Free Heavy 12px'>   </span><span bgcolor='#09090a' font='Font Awesome 6 Free Heavy 12px'>   </span>"
+    min_width = 32 
+    align = "center"
+}
+
+disk "/" {
+    format = "<span fgcolor='#fcc000' bgcolor='#09090a'>root:</span><span fgcolor='#fcc000' bgcolor='#09090a' font='Font Awesome 6 Free Heavy 12px'></span><span bgcolor='#09090a'> %percentage_used</span>"
+    prefix_type = custom
+    low_threshold = 5
+    threshold_type = "gbytes_free"
+    format_below_threshold = "<span fgcolor='#fcc000' bgcolor='#09090a'>root:</span><span fgcolor='#fcc000' bgcolor='#09090a' font='Font Awesome 6 Free Heavy 12px'></span><span bgcolor='#09090a'> %percentage_avail</span>"
+}
+
+disk "/home/same-f/datamount/sys/" {
+    format = "<span fgcolor='#fcc000' bgcolor='#09090a'>temp:</span><span fgcolor='#fcc000' bgcolor='#09090a' font='Font Awesome 6 Free Heavy 12px'></span><span bgcolor='#09090a'> %percentage_used</span>"
+    prefix_type = custom
+    low_threshold = 5
+    threshold_type = "gbytes_free"
+    format_below_threshold = "<span fgcolor='#fcc000' bgcolor='#09090a'>temp:</span><span fgcolor='#fcc000' bgcolor='#09090a' font='Font Awesome 6 Free Heavy 12px'></span><span bgcolor='#09090a'> %percentage_avail</span>"
+}
+
+disk "/home/same-f/datamount/data/" {
+    format = "<span fgcolor='#fcc000' bgcolor='#09090a'>data:</span><span fgcolor='#fcc000' bgcolor='#09090a' font='Font Awesome 6 Free Heavy 12px'></span><span bgcolor='#09090a'> %percentage_used</span>"
+    prefix_type = custom
+    low_threshold = 5
+    threshold_type = "gbytes_free"
+    format_below_threshold = "<span fgcolor='#fcc000' bgcolor='#09090a'>data:</span><span fgcolor='#fcc000' bgcolor='#09090a' font='Font Awesome 6 Free Heavy 12px'></span><span bgcolor='#09090a'> %percentage_avail</span>"
+}
+
+load {
+    format = "<span fgcolor='#fcc000' bgcolor='#09090a' font='Font Awesome 6 Free Heavy 12px'> </span><span bgcolor='#09090a'>%5mins</span>"
+    max_threshold = "0.5"
+    format_above_threshold = "<span fgcolor='#fcc000' bgcolor='#09090a' font='Font Awesome 6 Free Heavy 12px'> </span><span bgcolor='#09090a'>WRN</span>"
+}
+
+memory {
+    memory_used_method = "memavailable"
+    format = "<span fgcolor='#fcc000' bgcolor='#09090a' font='Font Awesome 6 Free Heavy 12px'> </span><span bgcolor='#09090a'>%free</span>"
+    threshold_degraded = 10%
+    threshold_critical = 5%
+    format_degraded = "<span fgcolor='#fcc000' bgcolor='#09090a' font='Font Awesome 6 Free Heavy 12px'> </span><span bgcolor='#09090a'>DMP</span>"
+}
+
+
+cpu_usage {
+    format = "<span fgcolor='#fcc000' bgcolor='#09090a' font='Font Awesome 6 Free Heavy 12px'> </span><span bgcolor='#09090a'>%usage</span>"
+    format_above_threshold = "<span fgcolor='#rf5358' bgcolor='#09090a' font='Font Awesome 6 Free Heavy 12px'> </span><span bgcolor='#09090a'>%usage</span>"
+    format_above_degraded_threshold = "<span fgcolor='#464680' bgcolor='#09090a' font='Font Awesome 6 Free Heavy 12px'> </span><span bgcolor='#09090a'>%usage</span>"
+    max_threshold = 75
+    degraded_threshold = 25
+}

@@ -13,22 +13,16 @@ filetype off
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
     Plugin 'VundleVim/Vundle.vim'
-    Plugin 'frazrepo/vim-rainbow'
     Plugin 'ryanoasis/vim-devicons'
     Plugin 'scrooloose/nerdtree', {'on': 'NERDTreeToggle'}
     Plugin 'tiagofumo/vim-nerdtree-syntax-highlight'
-    Plugin 'tpope/vim-surround'
-    Plugin 'tpope/vim-commentary'
     Plugin 'PotatoesMaster/i3-vim-syntax'
     Plugin 'vim-python/python-syntax'
     Plugin 'ap/vim-css-color'
     Plugin 'w0rp/ale'
     Plugin 'kaicataldo/material.vim'
     Plugin 'powerline/powerline', {'rtp': 'powerline/bindings/vim/'}
-    Plugin 'romkatv/powerlevel10k'
     Plugin 'itchyny/lightline.vim'
-    Plugin 'maralla/completor.vim'
-    Plugin 'editorconfig/editorconfig-vim'
     Plugin 'junegunn/limelight.vim'
 call vundle#end()
 filetype plugin indent on
@@ -75,7 +69,3 @@ let NERDTreeShowLineNumbers=1
 let NERDTreeShowHidden=1
 let NERDTreeMinimalUI=1
 let g:NERDTreeWinSize=24
-
-python3 from powerline.vim import setup as powerline_setup
-python3 powerline_setup()
-python3 del powerline_setup

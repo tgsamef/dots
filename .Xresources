@@ -1,52 +1,35 @@
-! http://github.com/tgsamef  ___
-!                          /'___\
-! same-f [.dotfiles]      /\ \__/
-!  ___  __ _ _ __ ___   __\ \ ,__\
-! / __|/ _` | '_ ` _ \ / _ \ \ \_/
-! \__ \ (_| | | | | | |  __/\ \ \
-! |___/\__,_|_| |_| |_|\___| \/_/
+!" http://github.com/tgsamef  ___   "
+!"                          /'___\  "
+!" same-f [.dotfiles]      /\ \__/  "
+!"  ___  __ _ _ __ ___   __\ \ ,__\ "
+!" / __|/ _` | '_ ` _ \ / _ \ \ \_/ "
+!" \__ \ (_| | | | | | |  __/\ \ \  "
+!" |___/\__,_|_| |_| |_|\___| \/_/  "
 !______________________________________
-! .Xresources
-!                           special
-*.foreground:                   #fcc000
-*.background:                   #111111
+
+*.foreground:                   #bbbbbb
+*.background:                   #0f1011
 *.cursorColor:                  #fcc000
-!                           black
-*.color0:                       #101010
-*.color8:                       #838583
-!                           red
-*.color1:                       #600000
-*.color9:                       #fc3434
-!                           green
-*.color2:                       #5c9634
-*.color10:                      #7cc84c
-!                           yellow
-*.color3:                       #ffb030
-*.color11:                      #fcdd33
-!                           blue
-*.color4:                       #0048bb
-*.color12:                      #1878ff
-!                           magenta
-*.color5:                       #684cc4
-*.color13:                      #a088fc
-!                           cyan
-*.color6:                       #64ace0
-*.color14:                      #64bcef
-!                           white
-*.color7:                       #c8c8c8
-*.color15:                      #e8e8e8
 
-Xft.dpi:                        96
-Xft.antialias:                  true
-Xft.hinting:                    true
-Xft.rgba:                       rgb
-Xft.autohint:                   false
-Xft.hintstyle:                  hintslight
-Xft.lcdfilter:                  lcddefault
+*.color0:                       #09090a
+*.color1:                       #ef5358
+*.color2:                       #70a551
+*.color3:                       #cc9428
+*.color4:                       #7cb7ff
+*.color5:                       #673ab7
+*.color6:                       #464680
+*.color7:                       #cccccc
 
-URxvt.font:                     xft:terminus:size=12:style=bold:antialias=true:autohint=true, \
-                                                  xft:devicons:style=Regular, \
-                                                  xft:FontAwesome:style=Regular
+*.color8:                       #312819
+*.color9:                       #f44336
+*.color10:                      #00f17d
+*.color11:                      #ffeb3b
+*.color12:                      #2d90ff
+*.color13:                      #c50ed2
+*.color14:                      #18dcff
+*.color15:                      #fcfcfc
+
+URxvt.font:                     xft:terminus:size=12:style=bold:antialias=true:autohint=true
 URxvt.internalBorder:           15
 URxvt.letterSpace:              0
 URxvt.antialias:                true

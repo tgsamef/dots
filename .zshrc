@@ -8,22 +8,7 @@
 #______________________________________
 # .zshrc config 
 
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
-
-unlimit
-limit stack 8192
-limit core 0
-limit -s
-umask 022
-
-freload() { while (( $# )); do; unfunktion $1; autoload -U $1; shift; done }
-fpath=($fpath ~/.zfunc)
-for func in $^fpath/*(N-.x:t); autoload $func
-typeset -U path cdpath fpath manpath
 manpath="/usr/man:/usr/share/man:/usr/local/man:/usr/X11R6/man:/opt/qt/doc"
-
 export MANPATH
 export LESS="-R"
 export TERM="xterm-256color"
@@ -72,7 +57,7 @@ autoload -U compinit
 compinit
 
 DISABLE_UNTRACKED_FILES_DIRTY=true
-ZSH_THEME="powerlevel10k/powerlevel10k"
+ZSH_THEME="norm"
 CASE_SENSITIVE=true
 ENABLE_CORRECTIONS=true
 COMPLETION_WAITING_DOTS="%F{yellow}waiting...%f"
@@ -80,16 +65,6 @@ CFLAGS="-03 -march=pentium4 -fomit-frame-pointer -funroll-loops -pipe -mfpmath=s
 CXXFLAGS="$CFLAGS"
 BOOTSTRAPCFLAGS="$CFLAGS"
 export CFLAGS CXXFLAGS BOOTSTRAPCFLAGS
-
-case ${TERM} in
-	xterm*|rxvt*|st|urxvt|tilix)
-		PROMPT_COMMAND='echo -ne "\033]0;${USER}@${HOSTNAME%%.*}:${PWD/#$HOME/\~}\007"'
-		;;
-	screen*)
-		PROMPT_COMMAND='echo -ne "\033_${USER}@${HOSTNAME%%.*}:${PWD/#$HOME/\~}\033\\"'
-		;;
-esac
-
 
 plugins=(git colored-man-pages docker
 	emotty emoji screen perl)
@@ -100,9 +75,5 @@ alias ls='ls -F --color=auto'
 alias ll='ls -l'
 alias la='ls -A'
 alias lla='ls -la'
-
-. /usr/lib/python3.10/site-packages/powerline/bindings/zsh/powerline.zsh
-
+alias sysup="sudo reflector --verbose -l 5 -p https --sort rate --save '/etc/pacman.d/mirrorlist' && sudo pacman -Syyuv"
 source $ZSH/oh-my-zsh.sh
-
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh

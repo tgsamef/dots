@@ -9,27 +9,44 @@
 #______________________________________
 # .xinitrc
 
-userresources=$HOME/.Xresources
-usermodmap=$HOME/.Xmodmap
-sysresources=/etc/X11/xinit/.Xresources
-sysmodmap=/etc/X11/xinit/.Xmodmap
-if [ -f $sysresources ]; then
-    xrdb -merge $sysresources
+[ -f ~/.xprofile ] && source ~/.xprofile
+
+if [ -f $HOME/.Xresources ]; then
+    xrdb -merge $HOME/.Xresources
 fi
-if [ -f $sysmodmap ]; then
-    xmodmap $sysmodmap
-fi
-if [ -f "$userresources" ]; then
-    xrdb -merge "$userresources"
-fi
-if [ -f "$usermodmap" ]; then
-    xmodmap "$usermodmap"
-fi
+
 if [ -d /etc/X11/xinit/xinitrc.d ] ; then
  for f in /etc/X11/xinit/xinitrc.d/?*.sh ; do
   [ -x "$f" ] && . "$f"
  done
  unset f
 fi
-dbus-update-activation-enciroment DISPLAY XAUTHORITY
-exec i3
+
+if [ -z "$DBUS_SESSION_BUS_ADDRESS" ]; then
+    eval "$(dbus-launch --sh-syntax --exit-with-session)"
+fi
+
+dbus-update-activation-environment
+
+session=${1:-i3}
+case $session in
+    awesome)        exec awesome;;
+    bspwm)          exec bspwm;;
+    cinnamon)       exec cinnamon-session;;
+    dwm)            exec dwm;;
+    enlightenment)  exec enlightenment_start;;
+    ede)            exec startede;;
+    fluxbox)        exec startfluxbox;;
+    gnome)          exec gnome-session;;
+    i3)             exec i3;;
+    icewm)          exec icewm-session;;
+    jwm)            exec jwm;;
+    kde)            exec startkde;;
+    mate)           exec mate-session;;
+    notion)         exec notion;;
+    openbox)        exec openbox-session;;
+    lxde)           exec startlxde;;
+    xfce)           exec startxfce4;;
+    xmonad)         exec xmonad;;
+    *)              exec $1;;
+esac

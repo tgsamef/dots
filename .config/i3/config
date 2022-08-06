@@ -13,8 +13,7 @@
 
     set $mod Mod4
     floating_modifier $mod
-    font pango:Terminus Bold 10
-
+    font pango:Terminus Bold 12px
 #______________________________________
 # Custom bindings
 
@@ -31,6 +30,9 @@
         bindsym $mod+d exec "st -c ranger -n ranger:term -e ranger"
         bindsym $mod+Shift+d exec "st -c ranger -n ranger:deck -e ranger"
     
+    # surf
+        bindsym $mod+b exec "surf ya.ru"
+
     # launcher
         bindsym $mod+a exec "rofi -modi drun,run,window -show-icons -show drun"
         
@@ -103,7 +105,7 @@
         bindsym $mod+Shift+9 move container to workspace number $ws9
 
     # resize windows
-        mode " resize  " {
+        mode " resize" {
             bindsym Left resize shrink width 10 px or 10 ppt
             bindsym Down resize grow height 10 px or 10 ppt
             bindsym Up resize shrink height 10 px or 10 ppt
@@ -112,74 +114,85 @@
             bindsym Escape mode "default"
             bindsym $mod+r mode "default"
             }
-        bindsym $mod+r mode " resize  "
+        bindsym $mod+r mode " resize"
 
     # reload/restart/exit
-        mode "  [C]onfig reload |  [R]estart |  [E]xit " {
+        mode " [C]onfig reload | [R]estart | [E]xit" {
             bindsym Shift+r restart
             bindsym Shift+c reload
             bindsym Shift+e exit
             bindsym Return mode "default"
             bindsym Escape mode "default"
             }
-        bindsym $mod+Shift+r mode "  [C]onfig reload |  [R]estart |  [E]xit "
+        bindsym $mod+Shift+r mode " [C]onfig reload | [R]estart | [E]xit"
 
 #______________________________________
 # Workspaces and layouts settings
 
     # names for workspaces
-        set $ws1 "1:  "
-        set $ws2 "2:  "
-        set $ws3 "3:  "
-        set $ws4 "4:  "
-        set $ws5 "5:  "
-        set $ws6 "6:  "
-        set $ws7 "7:  "
-        set $ws8 "8:  "
-        set $ws9 "9:  "
+#        set $ws1 "1: "
+#        set $ws2 "2: ⌨"
+#        set $ws3 "3: 🌐"
+#        set $ws4 "4: "
+#        set $ws5 "5: "
+#        set $ws6 "6: 🎨"
+#        set $ws7 "7: "
+#        set $ws8 "8: "
+#        set $ws9 "9: 🎲"
+        set $ws1 "1:<span font='Font Awesome 6 Free Heavy 16px'></span>"
+        set $ws2 "2:<span font='Font Awesome 6 Free Heavy 16px'></span>"
+        set $ws3 "3:<span font='Font Awesome 6 Free Heavy 16px'></span>"
+        set $ws4 "4:<span font='Font Awesome 6 Free Heavy 16px'></span>"
+        set $ws5 "5:<span font='Font Awesome 6 Brand 16px'></span>"
+        set $ws6 "6:<span font='Font Awesome 6 Free Heavy 16px'></span>"
+        set $ws7 "7:<span font='Font Awesome 6 Free Heavy 16px'></span>"
+        set $ws8 "8:<span font='Font Awesome 6 Brand 16px'></span>"
+        set $ws9 "9:<span font='Font Awesome 6 Free Heavy 16px'></span>"
 
     # specific workspaces
         assign [workspace=$ws2] layout stacked
         assign [workspace=$ws4] layout tabbed
         assign [class="terminal"] $ws2
+        assign [class="Surf"] $ws3
         assign [class="ranger"] $ws4
 
     # specific windows
         for_window [instance="same:term"] focus, layout stacked
         for_window [instance="same:deck"] move window to scratchpad, scratchpad show, floating enable, resize set 1248 720, move position center, border pixel 5
+        for_window [instance="surf"] focus, layout tabbed
         for_window [instance="ranger:term"] focus, layout tabbed
         for_window [instance="ranger:deck"] move window to scratchpad, scratchpad show, floating enable, resize set 1248 720, move position center, border pixel 5
 
 #______________________________________
 # Color settings
 
-    # colors from Xresources
-        set_from_resource $bcol00 i3wm.color0 #ffffff
-        set_from_resource $bcol01 i3wm.color1 #ffffff
-        set_from_resource $bcol02 i3wm.color2 #ffffff
-        set_from_resource $bcol03 i3wm.color3 #ffffff
-        set_from_resource $bcol04 i3wm.color4 #ffffff
-        set_from_resource $bcol05 i3wm.color5 #ffffff
-        set_from_resource $bcol06 i3wm.color6 #ffffff
-        set_from_resource $bcol07 i3wm.color7 #ffffff
-        set_from_resource $bcol08 i3wm.color8 #ffffff
-        set_from_resource $bcol09 i3wm.color9 #ffffff
-        set_from_resource $bcol10 i3wm.color10 #ffffff
-        set_from_resource $bcol11 i3wm.color11 #ffffff
-        set_from_resource $bcol12 i3wm.color12 #ffffff
-        set_from_resource $bcol13 i3wm.color13 #ffffff
-        set_from_resource $bcol14 i3wm.color14 #ffffff
-        set_from_resource $bcol15 i3wm.color15 #ffffff
-        set_from_resource $bcbg i3wm.background #ffffff
-        set_from_resource $bcfg i3wm.foreground #ffffff
-
-    # Window and Color             #border    #bckgrnd    #text       #indicator #child_border
-        client.focused             $bcol11    $bcbg       $bcfg       #364670    #364670
-        client.focused_inactive    $bcol11    $bcbg       $bcol03     #2F2F38    #2F2F38
-        client.unfocused           $bcol14    $bcol08     $bcol14     #2F2F38    #2F2F38
-        client.urgent              $bcol09    $bcol09     $bcol15     #6B3659    #6B3659
-        client.placeholder         $bcol15    $bcol08     $bcol15     #666666    #666666
-        client.background          $bcbg
+#    # colors from Xresources
+#        set_from_resource $bcol00 i3wm.color0 #ffffff
+#        set_from_resource $bcol01 i3wm.color1 #ffffff
+#        set_from_resource $bcol02 i3wm.color2 #ffffff
+#        set_from_resource $bcol03 i3wm.color3 #ffffff
+#        set_from_resource $bcol04 i3wm.color4 #ffffff
+#        set_from_resource $bcol05 i3wm.color5 #ffffff
+#        set_from_resource $bcol06 i3wm.color6 #ffffff
+#        set_from_resource $bcol07 i3wm.color7 #ffffff
+#        set_from_resource $bcol08 i3wm.color8 #ffffff
+#        set_from_resource $bcol09 i3wm.color9 #ffffff
+#        set_from_resource $bcol10 i3wm.color10 #ffffff
+#        set_from_resource $bcol11 i3wm.color11 #ffffff
+#        set_from_resource $bcol12 i3wm.color12 #ffffff
+#        set_from_resource $bcol13 i3wm.color13 #ffffff
+#        set_from_resource $bcol14 i3wm.color14 #ffffff
+#        set_from_resource $bcol15 i3wm.color15 #ffffff
+#        set_from_resource $bcbg i3wm.background #ffffff
+#        set_from_resource $bcfg i3wm.foreground #ffffff
+#
+#    # Window and Color             #border    #bckgrnd    #text       #indicator #child_border
+#        client.focused             $bcol11    $bcbg       $bcfg       #364670    #364670
+#        client.focused_inactive    $bcol11    $bcbg       $bcol03     #2F2F38    #2F2F38
+#        client.unfocused           $bcol14    $bcol08     $bcol14     #2F2F38    #2F2F38
+#        client.urgent              $bcol09    $bcol09     $bcol15     #6B3659    #6B3659
+#        client.placeholder         $bcol15    $bcol08     $bcol15     #666666    #666666
+#        client.background          $bcbg
 
 #______________________________________
 # Gaps and borders settings
@@ -232,13 +245,13 @@
 
     bar {
     	i3bar_command i3bar --transparency
-        status_command python /usr/lib/python3.10/site-packages/powerline/bindings/i3/powerline-i3.py
+        status_command i3status
     	position top
     	id bar-0
     	mode dock
     	hidden_state hide
     	tray_output none
-    	font pango:Terminus Bold 10
+#    	font pango:Iosevka Term Heavy, Font Awesome 6 Free Heavy 12px
     	tray_padding 0
     	workspace_buttons yes
     	workspace_min_width 32
@@ -246,15 +259,37 @@
     	strip_workspace_name no
     	binding_mode_indicator yes
     	    colors {
-    		    background #20202022
-    		    statusline #fcd400ff
-    		    separator  #fc3434aa
+    		    background #09090a77
+    		    statusline #7cb7ff77
+    		    separator  #18dcff00
                     #colorclass          #border    #bg        #text
-    			    focused_workspace    #5c9c34ff  #fcb03022  #fcd400ff
-    		        active_workspace     #5c9c3422  #fcb03022  #fcd400aa
-    		        inactive_workspace   #5c9c3422  #fcb03022  #fcd400aa
-    		        urgent_workspace     #fc3434ff  #20202022  #1878dcff
-    		        binding_mode         #fc3434ff  #1878dcaa  #fc3434ff
+    			    focused_workspace    #18dcff    #000000    #fcc000
+    		        active_workspace     #464680    #0f1011    #7cb7ff
+    		        inactive_workspace   #09090a    #322819    #464680
+    		        urgent_workspace     #464680    #09090a    #cc9428
+    		        binding_mode         #70a551    #322819    #00f17d
     		        }
         }
-    bindsym $mod+b bar mode toggle bar-0
+    bindsym $mod+x bar mode toggle bar-0
+
+    bar {
+    	i3bar_command i3bar --transparency
+    	position bottom
+    	id bar-1
+    	mode dock
+    	hidden_state hide
+    	tray_output none
+    	workspace_buttons no
+        binding_mode_indicator no
+    	    colors {
+    		    background #00000000
+    		    statusline #7cb7ffff
+    		    separator  #00000000
+                    #colorclass          #border    #bg        #text
+    			    focused_workspace    #18dcff    #000000    #fcc000
+    		        active_workspace     #464680    #0f1011    #7cb7ff
+    		        inactive_workspace   #09090a    #322819    #464680
+    		        urgent_workspace     #464680    #09090a    #cc9428
+    		        binding_mode         #70a551    #322819    #00f17d
+    		        }
+        }
